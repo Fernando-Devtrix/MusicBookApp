@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Music Book</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+     
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<div class="container">
+    <ul class="list-group">
+{{#each model as |music-book|}}
+<br>
+    
+	<li class="list-group-item list-group-item-primary">Book Name: {{music-book.title}}</li>
+	<li class="list-group-item">Author: {{music-book.author}}</li>
+	<li class="list-group-item">Price: {{music-book.price}}</li>
+    <li class="list-group-item">Photo:  <img src="{{music-book.imgUrl}}" class="rounded mx-auto d-block" alt="{{music-book.imgUrl}}">
+        <button type="button" class="text-info btn btn-light btn-lg">{{#link-to 'detail' music-book.id}}
+		Edit
+	    {{/link-to}}
+        </button>
+    </li>
+    {{!-- <button {{action 'deleteMusicBook' on='click'}}>Delete Music Book</button> --}}
+<br>
+{{/each}}
+    </ul>
+
+    <form {{action 'addMusicBook' on='submit'}}>
+	{{input type="text" value=title}}
+	{{input type="text" value=author}}
+	{{input type="number" value=price}}
+    {{input type="text" value=imgUrl}}
+	<button type="submit">Add Music Book</button>
+</form>
+<br>
+<br>
+
+</div>
