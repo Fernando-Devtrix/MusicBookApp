@@ -7,10 +7,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="../list">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="../author">Authors</a>
       </li>
      
     </ul>
@@ -20,20 +20,47 @@
     </form>
   </div>
 </nav>
-<div class="container">
-    <h1>Book Music Detail</h1>
-      {{#link-to 'list'}}
-	    Go Back
-    {{/link-to}}
 
-    <form {{action 'saveMusicBook' model on='submit'}}>
-        <p>{{input type="text" value=model.title}}</p>
-        <p>{{input type="text" value=model.author}}</p>
-        <p>{{input type="number" value=model.price}}</p>
+<br>
+<br>
 
-        <button type="submit">Update Data</button>
-    </form>
 
-    <br>
-    <button {{action 'destroyMusicBook' model on='click'}}>Delete</button>
-</div>
+<form {{action 'saveMusicBook' model on='submit'}}>
+  <div class="container">
+    <div class="jumbotron">
+       {{#link-to 'list'}}
+       <p class="badge badge-info">Return to Music Books list</p> 
+       {{/link-to}}
+      <h1 class="display-4">Edit: {{model.title}}</h1>
+      <div class="container form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">Music Book Name</label>
+        <div class="col-10">
+          {{input class="form-control" type="text" value=model.title}}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-search-input" class="col-2 col-form-label">Author</label>
+        <div class="col-10">
+          {{input class="form-control" type="text" value=model.author}}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-email-input" class="col-2 col-form-label">Price</label>
+        <div class="col-10">
+          
+          {{input class="form-control"  type="number" value=model.price}}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-url-input" class="col-2 col-form-label">Image URL</label>
+        <div class="col-10">
+          {{input class="form-control" type="text" value=model.imgUrl}}
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" disabled={{if model.isSaving 'true' ''}}>Update Data</button>
+    <button class="btn btn-danger" {{action 'destroyMusicBook' model on='click'}}>Delete</button>
+    </div>
+  </div>
+</form>
+
+

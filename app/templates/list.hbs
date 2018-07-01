@@ -7,10 +7,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="author">Authors</a>
       </li>
      
     </ul>
@@ -22,6 +22,60 @@
 </nav>
 <div class="container">
     <ul class="list-group">
+
+      <div class="alert alert-success" role="alert" style="display:none;">
+  <h4 class="alert-heading">Well done!</h4>
+  <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+  <hr>
+  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+</div>
+
+
+{{!-- Add a new book --}}
+<br>
+<br>
+<form class="jumbotron jumbotron-fluidv needs-validation" novalidate{{action 'addMusicBook' on='submit'}}>
+<div class="container">
+    <h1 class="display-4">Add a new Book</h1>
+    <p class="lead">Type the Music Book information. Then clic Add Music Book.</p>
+  </div>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationBookName">Book Name</label>
+      {{input type="text" class="form-control" id="validationBookName" placeholder="Book name" value=title}}
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationAuthor">Author</label>
+      {{input type="text" class="form-control" id="validationAuthor" placeholder="Author name" value=author}}
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationPrice">Price</label>
+      {{input type="number" class="form-control" id="validationPrice" placeholder="Price" value=price}}
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>  
+  </div>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationImgUrl">Url Image</label>
+      {{input type="text" class="form-control" id="validationImgUrl" placeholder="Enter Url image" value=imgUrl}}
+      <div class="invalid-feedback">
+        Please provide a valid city.
+      </div>
+    </div>
+  </div>
+  <button class="btn-advise btn btn-primary" type="submit">Add Music Book</button>
+</form>
+
+
+{{!-- Loop for books --}}
 {{#each model as |music-book|}}
 <br>
     
@@ -38,15 +92,27 @@
 <br>
 {{/each}}
     </ul>
-
-    <form {{action 'addMusicBook' on='submit'}}>
-	{{input type="text" value=title}}
-	{{input type="text" value=author}}
-	{{input type="number" value=price}}
-    {{input type="text" value=imgUrl}}
-	<button type="submit">Add Music Book</button>
-</form>
-<br>
-<br>
-
 </div>
+
+
+{{!-- 
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script> --}}
