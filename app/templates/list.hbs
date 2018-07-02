@@ -21,98 +21,67 @@
   </div>
 </nav>
 <div class="container">
-    <ul class="list-group">
-
-      <div class="alert alert-success" role="alert" style="display:none;">
-  <h4 class="alert-heading">Well done!</h4>
-  <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
-  <hr>
-  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
-</div>
-
-
+  <ul class="list-group">
 {{!-- Add a new book --}}
-<br>
-<br>
-<form class="jumbotron jumbotron-fluidv needs-validation" novalidate{{action 'addMusicBook' on='submit'}}>
-<div class="container">
-    <h1 class="display-4">Add a new Book</h1>
-    <p class="lead">Type the Music Book information. Then clic Add Music Book.</p>
-  </div>
-  <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label for="validationBookName">Book Name</label>
-      {{input type="text" class="form-control" id="validationBookName" placeholder="Book name" value=title}}
-      <div class="valid-feedback">
-        Looks good!
+    <br>
+    <br>
+    <form class="jumbotron jumbotron-fluidv needs-validation" novalidate{{action 'addMusicBook' on='submit'}}>
+    <div class="container">
+        <h1 class="display-4">Add a new Book</h1>
+        <p class="lead">Type the Music Book information. Then clic Add Music Book.</p>
       </div>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="validationAuthor">Author</label>
-      {{input type="text" class="form-control" id="validationAuthor" placeholder="Author name" value=author}}
-      <div class="valid-feedback">
-        Looks good!
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="validationBookName">Book Name</label>
+          {{input type="text" class="form-control" id="validationBookName" placeholder="Book name" value=title}}
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationAuthor">Author</label>
+          {{input type="text" class="form-control" id="validationAuthor" placeholder="Author name" value=author}}
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationPrice">Price</label>
+          {{input type="number" class="form-control" id="validationPrice" placeholder="Price" value=price}}
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>  
       </div>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="validationPrice">Price</label>
-      {{input type="number" class="form-control" id="validationPrice" placeholder="Price" value=price}}
-      <div class="valid-feedback">
-        Looks good!
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label for="validationImgUrl">Url Image</label>
+          {{input type="text" class="form-control" id="validationImgUrl" placeholder="Enter Url image" value=imgUrl}}
+          <div class="invalid-feedback">
+            Please provide a valid city.
+          </div>
+        </div>
       </div>
-    </div>  
-  </div>
-  <div class="form-row">
-    <div class="col-md-6 mb-3">
-      <label for="validationImgUrl">Url Image</label>
-      {{input type="text" class="form-control" id="validationImgUrl" placeholder="Enter Url image" value=imgUrl}}
-      <div class="invalid-feedback">
-        Please provide a valid city.
-      </div>
-    </div>
-  </div>
-  <button class="btn-advise btn btn-primary" type="submit">Add Music Book</button>
-</form>
+      <button class="btn-advise btn btn-primary" type="submit">Add Music Book</button>
+    </form>
 
 
-{{!-- Loop for books --}}
-{{#each model as |music-book|}}
-<br>
-    
-	<li class="list-group-item list-group-item-primary">Book Name: {{music-book.title}}</li>
-	<li class="list-group-item">Author: {{music-book.author}}</li>
-	<li class="list-group-item">Price: {{music-book.price}}</li>
-    <li class="list-group-item">Photo:  <img src="{{music-book.imgUrl}}" class="rounded mx-auto d-block" alt="{{music-book.imgUrl}}">
-        <button type="button" class="text-info btn btn-light btn-lg">{{#link-to 'detail' music-book.id}}
-		Edit
-	    {{/link-to}}
-        </button>
-    </li>
-    {{!-- <button {{action 'deleteMusicBook' on='click'}}>Delete Music Book</button> --}}
-<br>
-{{/each}}
+    {{!-- Loop for books --}}
+    {{#each model as |music-book|}}
+    <br>
+        
+      <li class="list-group-item list-group-item-success">Book Name: {{music-book.title}}
+         <button type="button" class="btn-align text-info btn btn-outline-success btn-sm">
+            {{#link-to 'detail' music-book.id}}
+            Edit
+            {{/link-to}}
+            </button>
+      </li>
+      <li class="list-group-item">Author: {{music-book.author}}</li>
+      <li class="list-group-item">Price: {{music-book.price}}</li>
+        <li class="list-group-item">Photo:  <img src="{{music-book.imgUrl}}" class="img-size rounded mx-auto d-block" alt="{{music-book.imgUrl}}"></li>
+        {{!-- <button {{action 'deleteMusicBook' on='click'}}>Delete Music Book</button> --}}
+    <br>
+    {{/each}}
     </ul>
 </div>
-
-
-{{!-- 
-<script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-</script> --}}

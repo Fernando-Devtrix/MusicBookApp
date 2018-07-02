@@ -21,12 +21,52 @@
   </div>
 </nav>
 
+<div class="container">
+	<form {{action 'addNewAuthor' on='submit'}}>
+		<div class="jumbotron">
+			<h1 class="display-4">Add an author</h1>
+			<p class="lead">Type the author information. Then clic Add Author.</p>
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<label for="validationFirstName">First Name</label>
+					{{input type="text" class="form-control" id="validationFirstName" placeholder="First Name" value=first_name}}
+					<div class="valid-feedback">
+						Looks good!
+					</div>
+				</div>
+			<div class="col-md-4 mb-3">
+				<label for="validationLastName">Last Name</label>
+				{{input type="text" class="form-control" id="validationLastName" placeholder="Last name" value=last_name}}
+				<div class="valid-feedback">
+					Looks good!
+				</div>
+			</div>
+			<div class="col-md-4 mb-3">
+				<label for="validationNickName">Nick Name</label>
+				{{input type="text" class="form-control" id="validationNickName" placeholder="Nick Name" value=nickname}}
+				<div class="valid-feedback">
+					Looks good!
+				</div>
+			</div>  
+			</div>
+    <button class="btn-advise btn btn-primary" type="submit">Add Author</button>
+		</div>
+
+	</form>
+</div>
+
 {{#each model as |author|}}
 <br>
 	<div class="container">
-	<li class="list-group-item list-group-item-primary">Name: {{author.firstName}}</li>
-	<li class="list-group-item">Last Name: {{author.lastName}}</li>
-	<li class="list-group-item">Nick Name: {{author.nickname}}</li>
+	<li class="list-group-item list-group-item-primary">Name: {{author.first_name}}
+			<button type="button" class="btn-align btn btn-light btn-sm">
+					{{#link-to 'author-detail' author.id}}
+						Edit
+					{{/link-to}}
+			</button>
+	</li>
+	 <li class="list-group-item">Last Name: {{author.last_name}}</li>
+	<li class="list-group-item">Nick Name: {{author.nickname}}</li> 
     {{!-- <li class="list-group-item">Age: {{author.age}}</li>	 --}}
 	</div>
 <br>

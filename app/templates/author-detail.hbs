@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Music Book</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="../list">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../author">Authors</a>
+      </li>
+     
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<form {{action 'saveAuthor' model on='submit'}}>
+    <div class="container">
+        <div class="jumbotron">
+             {{#link-to 'author'}}
+             <p class="badge badge-info">Return to Authors list</p> 
+             {{/link-to}}
+             <h1 class="display-4">Edit <i>{{model.first_name}} {{model.last_name}}</i> information</h1>
+             <div class="container form-group row">
+                 <label for="example-text-input" class="col-2 col-form-label">Author Name</label>
+                <div class="col-10">
+                {{input class="form-control" type="text" value=model.first_name}}
+                </div>
+            </div>
+            <div class="container form-group row">
+                <label for="example-text-input" class="col-2 col-form-label">Last Name</label>
+                <div class="col-10">
+                {{input class="form-control" type="text" value=model.last_name}}
+                </div>
+            </div>
+            <div class="container form-group row">
+                <label for="example-text-input" class="col-2 col-form-label">Nick Name</label>
+                <div class="col-10">
+                {{input class="form-control" type="text" value=model.nickname}}
+                </div>
+            </div>
+             <button type="submit" class="btn btn-success" disabled={{if model.isSaving 'true' ''}}>Update Data</button>
+             <button class="btn btn-danger" {{action 'destroyAuthor' model on='click'}}>Delete Author</button>
+        </div>
+    </div>
+</form>
+
+ 
