@@ -6,10 +6,12 @@
   "license": "MIT",
   "author": "",
   "directories": {
-    "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fernando-Devtrix/MusicBookApp.git"
+  },
   "scripts": {
     "build": "ember build",
     "lint:js": "eslint ./*.js app blueprints config lib server tests",
@@ -48,5 +50,10 @@
   },
   "dependencies": {
     "ember-bootstrap": "^2.0.0"
-  }
+  },
+  "main": ".eslintrc.js",
+  "bugs": {
+    "url": "https://github.com/Fernando-Devtrix/MusicBookApp/issues"
+  },
+  "homepage": "https://github.com/Fernando-Devtrix/MusicBookApp#readme"
 }

@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
-
+import author from '../models/author';
 
 export default Controller.extend({
     actions: {
@@ -17,15 +16,13 @@ export default Controller.extend({
             this.set('first_name', '');
             this.set('last_name', '');
             this.set('nickname', '');    
+            },
+
+        onModelDelete (author) {
+            let confirmModelDelete = confirm('Are u sure to delete this author');
+            if (confirmModelDelete) {
+                author.destroyRecord();
             }
-    },
-
-    fullName: computed('first_name', 'last_name', 'nickname', function(){
-        let first_name = this.get('first_name');
-        let last_name = this.get('last_name');
-        let nickname = this.get('nickname');
-        // let age = this.get('age');
-
-        return  `${first_name} ${last_name} ${nickname}`;
-    })
+        }
+    }
 });

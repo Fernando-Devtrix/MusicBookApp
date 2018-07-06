@@ -51,14 +51,14 @@
 			</div>
     <button class="btn-advise btn btn-primary" type="submit">Add Author</button>
 		</div>
-
 	</form>
 </div>
 
 {{#each model as |author|}}
-<br>
+{{!-- <br>
 	<div class="container">
 	<li class="list-group-item list-group-item-primary">Name: {{author.first_name}}
+			
 			<button type="button" class="btn-align btn btn-light btn-sm">
 					{{#link-to 'author-detail' author.id}}
 						Edit
@@ -67,7 +67,14 @@
 	</li>
 	 <li class="list-group-item">Last Name: {{author.last_name}}</li>
 	<li class="list-group-item">Nick Name: {{author.nickname}}</li> 
-    {{!-- <li class="list-group-item">Age: {{author.age}}</li>	 --}}
+    
 	</div>
-<br>
+<br> --}}
+{{delete-button
+	author=author
+	onModelDelete=(action 'onModelDelete')
+}}
+
+	{{!-- onModelDelete=(action 'onModelDelete') --}}
+
 {{/each}}
